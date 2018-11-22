@@ -17,6 +17,10 @@
 package cn.edu.gxust.jiweihuang.filature.commons.functions;
 
 import org.hipparchus.analysis.UnivariateFunction;
+import org.hipparchus.analysis.integration.MidPointIntegrator;
+import org.hipparchus.analysis.integration.RombergIntegrator;
+import org.hipparchus.analysis.integration.SimpsonIntegrator;
+import org.hipparchus.analysis.integration.TrapezoidIntegrator;
 
 import java.io.Serializable;
 
@@ -102,4 +106,99 @@ public interface IUnivariateFunction extends UnivariateFunction,
      */
     String formula();
 
+    /**
+     * <p>The method {@code integrateMidPoint(double lowerX, double upperX)} is used to
+     * get the numerical integral value with midpoint method (中点积分).</p>
+     *
+     * @param lowerX the lower limit of integral
+     * @param upperX the upper limit of integral
+     * @return the numerical integral value with midpoint method.
+     */
+    default double integrateMidPoint(double lowerX, double upperX) {
+        MidPointIntegrator integrator = new MidPointIntegrator();
+        return integrator.integrate(Integer.MAX_VALUE, this, lowerX, upperX);
+    }
+
+    /**
+     * <p>The method {@code integrateRomberg(double lowerX, double upperX)} is used to
+     * get the numerical integral value with romberg method (龙贝格积分).</p>
+     *
+     * @param lowerX the lower limit of integral
+     * @param upperX the upper limit of integral
+     * @return the numerical integral value with romberg method.
+     */
+    default double integrateRomberg(double lowerX, double upperX) {
+        RombergIntegrator integrator = new RombergIntegrator();
+        return integrator.integrate(Integer.MAX_VALUE, this, lowerX, upperX);
+    }
+
+    /**
+     * <p>The method {@code integrateSimpson(double lowerX, double upperX)} is used to
+     * get the numerical integral value with simpson method (辛普森积分).</p>
+     *
+     * @param lowerX the lower limit of integral
+     * @param upperX the upper limit of integral
+     * @return the numerical integral value with simpson method.
+     */
+    default double integrateSimpson(double lowerX, double upperX) {
+        SimpsonIntegrator integrator = new SimpsonIntegrator();
+        return integrator.integrate(Integer.MAX_VALUE, this, lowerX, upperX);
+    }
+
+    /**
+     * <p>The method {@code integrateTrapezoid(double lowerX, double upperX)} is used to
+     * get the numerical integral value with trapezoid method (梯形积分).</p>
+     *
+     * @param lowerX the lower limit of integral
+     * @param upperX the upper limit of integral
+     * @return the numerical integral value with trapezoid method.
+     */
+    default double integrateTrapezoid(double lowerX, double upperX) {
+        TrapezoidIntegrator integrator = new TrapezoidIntegrator();
+        return integrator.integrate(Integer.MAX_VALUE, this, lowerX, upperX);
+    }
+
+    /**
+     * <p>The method {@code integrateMidPoint(double lowerX, double upperX)} is used to
+     * get the numerical integral value with midpoint method (中点积分).</p>
+     *
+     * @return the numerical integral value with midpoint method.
+     */
+    default double integrateMidPoint() {
+        MidPointIntegrator integrator = new MidPointIntegrator();
+        return integrator.integrate(Integer.MAX_VALUE, this, lowerX(), upperX());
+    }
+
+    /**
+     * <p>The method {@code integrateRomberg(double lowerX, double upperX)} is used to
+     * get the numerical integral value with romberg method (龙贝格积分).</p>
+     *
+     * @return the numerical integral value with romberg method.
+     */
+    default double integrateRomberg() {
+        RombergIntegrator integrator = new RombergIntegrator();
+        return integrator.integrate(Integer.MAX_VALUE, this, lowerX(), upperX());
+    }
+
+    /**
+     * <p>The method {@code integrateSimpson(double lowerX, double upperX)} is used to
+     * get the numerical integral value with simpson method (辛普森积分).</p>
+     *
+     * @return the numerical integral value with simpson method.
+     */
+    default double integrateSimpson() {
+        SimpsonIntegrator integrator = new SimpsonIntegrator();
+        return integrator.integrate(Integer.MAX_VALUE, this, lowerX(), upperX());
+    }
+
+    /**
+     * <p>The method {@code integrateTrapezoid(double lowerX, double upperX)} is used to
+     * get the numerical integral value with trapezoid method (梯形积分).</p>
+     *
+     * @return the numerical integral value with trapezoid method.
+     */
+    default double integrateTrapezoid() {
+        TrapezoidIntegrator integrator = new TrapezoidIntegrator();
+        return integrator.integrate(Integer.MAX_VALUE, this, lowerX(), upperX());
+    }
 }
