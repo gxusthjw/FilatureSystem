@@ -13,16 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package cn.edu.gxust.jiweihuang.filature.commons.utils;
 
-package cn.edu.gxust.jiweihuang.filature.bave;
-
-
-import java.io.Serializable;
-
-public interface IBave extends Serializable {
-    long getBaveID();
-
-    double getBaveLength();
-
-    double getBaveSize(double pos);
+public interface IDoubleSequences {
 }
